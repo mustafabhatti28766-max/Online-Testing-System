@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Pakistan GK Test</title>
+<title>General Knowledge Test</title>
 
 <style>
 body {
@@ -30,7 +30,7 @@ input {
     width: 60%;
 }
 
-/* ✅ FIXED OPTION STYLE */
+/* OPTION STYLE */
 #optionsBox {
     text-align: left;
     margin-left: 20%;
@@ -54,10 +54,14 @@ input[type="radio"] {
 <div class="container" id="quizBox">
 
 <div id="startForm">
-    <h2>Pakistan General Knowledge Test</h2>
+    <h2>General Knowledge Test</h2>
+
     <input type="text" id="fname" placeholder="First Name"><br>
+
     <input type="text" id="lname" placeholder="Last Name"><br>
+
     <input type="text" id="userClass" placeholder="Class"><br>
+
     <button onclick="startTest()">Start</button>
 </div>
 
@@ -66,22 +70,27 @@ input[type="radio"] {
 <script>
 
 // ===== USER INFO =====
-let firstName="", lastName="", userClass="";
+
+let firstName = "";
+let lastName = "";
+let userClass = "";
+
 
 // ===== START =====
-function startTest(){
+
+function startTest() {
 
     firstName = document.getElementById("fname").value;
     lastName = document.getElementById("lname").value;
     userClass = document.getElementById("userClass").value;
 
-    if(firstName=="" || lastName=="" || userClass==""){
+    if (firstName == "" || lastName == "" || userClass == "") {
         alert("Please fill all fields!");
         return;
     }
 
     document.getElementById("quizBox").innerHTML =
-        '<h2>Pakistan General Knowledge Test</h2>' +
+        '<h2>General Knowledge Test</h2>' +
         '<div id="questionBox"></div>' +
         '<div id="optionsBox"></div>' +
         '<button onclick="nextQuestion()" id="nextBtn">Next</button>';
@@ -89,66 +98,708 @@ function startTest(){
     loadQuestion();
 }
 
+
 // ===== QUESTIONS =====
+
 const allQuestions = [
-{q:"How many provinces are there in Pakistan?", o:["5","4","7","3","9"], a:1},
-{q:"What is the capital of Pakistan?", o:["Karachi","Lahore","Islamabad","Quetta","Peshawar"], a:2},
-{q:"What is the national language of Pakistan?", o:["Punjabi","Sindhi","Urdu","Pashto","Balochi"], a:2},
-{q:"What is the national animal of Pakistan?", o:["Lion","Tiger","Markhor","Goat","Cow"], a:2},
-{q:"What is the national bird of Pakistan?", o:["Eagle","Peacock","Chukar","Parrot","Sparrow"], a:2},
-{q:"Which city is called City of Lights?", o:["Lahore","Karachi","Islamabad","Quetta","Peshawar"], a:1},
-{q:"Which river is longest in Pakistan?", o:["Jhelum","Chenab","Indus","Ravi","Sutlej"], a:2},
-{q:"What is the national sport of Pakistan?", o:["Cricket","Football","Hockey","Tennis","Kabaddi"], a:2},
-{q:"Pakistan independence year?", o:["1945","1946","1947","1948","1950"], a:2},
-{q:"Founder of Pakistan?", o:["Iqbal","Jinnah","Liaquat","Ayub","Zia"], a:1},
 
-{q:"Full name of Pakistan?", o:["Republic","Islamic Republic of Pakistan","State","Union","Federation"], a:1},
-{q:"First Governor General?", o:["Liaquat","Jinnah","Ayub","Bhutto","Zia"], a:1},
-{q:"First Prime Minister?", o:["Jinnah","Liaquat Ali Khan","Bhutto","Sharif","Zia"], a:1},
-{q:"Lahore Resolution year?", o:["1930","1940","1947","1956","1965"], a:1},
-{q:"First constitution?", o:["1950","1956","1962","1973","1947"], a:1},
-{q:"Largest province?", o:["Punjab","Sindh","KP","Balochistan","GB"], a:3},
-{q:"Largest city?", o:["Lahore","Karachi","Islamabad","Quetta","Multan"], a:1},
-{q:"Highest mountain?", o:["K2","Everest","Nanga Parbat","Rakaposhi","Broad Peak"], a:0},
-{q:"Longest river?", o:["Indus","Jhelum","Chenab","Ravi","Sutlej"], a:0},
-{q:"National flower?", o:["Rose","Tulip","Jasmine","Lotus","Sunflower"], a:2},
+/* ===== GEOGRAPHY ===== */
 
-{q:"National fruit?", o:["Apple","Banana","Mango","Orange","Grapes"], a:2},
-{q:"National tree?", o:["Neem","Peepal","Deodar","Palm","Banyan"], a:2},
-{q:"National drink?", o:["Milk","Tea","Sugarcane juice","Water","Lassi"], a:2},
-{q:"Pakistan Day?", o:["14 Aug","23 March","6 Sep","9 Nov","1 May"], a:1},
-{q:"Iqbal Day?", o:["9 Nov","25 Dec","14 Aug","23 March","1 Jan"], a:0},
-{q:"Defence Day?", o:["6 Sep","14 Aug","23 March","9 Nov","1 May"], a:0},
-{q:"Currency?", o:["Rupee","Dollar","Euro","Riyal","Taka"], a:0},
-{q:"Official language?", o:["Urdu","English","Punjabi","Sindhi","Pashto"], a:1},
-{q:"Major religion?", o:["Islam","Hinduism","Christianity","Buddhism","Sikhism"], a:0},
-{q:"National anthem?", o:["Qaumi Tarana","Milli Naghma","Pak Song","Anthem","Tune"], a:0},
+{
+    q: "What is the largest continent in the world?",
+    o: ["Africa", "Asia", "Europe", "Australia", "South America"],
+    a: 1
+},
 
-{q:"Who wrote national anthem?", o:["Iqbal","Hafeez Jalandhari","Faiz","Ghalib","Josh"], a:1},
-{q:"Minar-e-Pakistan located in?", o:["Karachi","Lahore","Islamabad","Multan","Peshawar"], a:1},
-{q:"Badshahi Mosque is in?", o:["Karachi","Lahore","Islamabad","Multan","Quetta"], a:1},
-{q:"Faisal Mosque located in?", o:["Karachi","Islamabad","Lahore","Quetta","Peshawar"], a:1},
-{q:"K2 is located in?", o:["Punjab","Sindh","GB","KP","Balochistan"], a:2},
-{q:"Pakistan shares border with how many countries?", o:["3","4","5","6","7"], a:1},
-{q:"Which desert is in Pakistan?", o:["Sahara","Thar","Arabian","Gobi","Kalahari"], a:1},
-{q:"Largest dam?", o:["Mangla","Tarbela","Warsak","Hub","Diamer"], a:1},
-{q:"Tarbela dam on?", o:["Jhelum","Indus","Chenab","Ravi","Sutlej"], a:1},
-{q:"Mangla dam on?", o:["Jhelum","Indus","Chenab","Ravi","Sutlej"], a:0},
+{
+    q: "What is the smallest continent?",
+    o: ["Europe", "Australia", "Africa", "Antarctica", "South America"],
+    a: 1
+},
 
-{q:"First President?", o:["Ayub Khan","Iskander Mirza","Zia","Yahya","Bhutto"], a:1},
-{q:"National poet?", o:["Iqbal","Faiz","Ghalib","Meer","Josh"], a:0},
-{q:"Pakistan largest industry?", o:["Textile","Steel","Oil","IT","Food"], a:0},
-{q:"Sea port city?", o:["Karachi","Lahore","Islamabad","Quetta","Multan"], a:0},
-{q:"Pakistan nuclear test year?", o:["1998","1999","2000","1997","1996"], a:0},
+{
+    q: "What is the largest ocean in the world?",
+    o: ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Arctic Ocean", "Southern Ocean"],
+    a: 2
+},
 
-{q:"Which sea touches Pakistan?", o:["Arabian Sea","Red Sea","Black Sea","Mediterranean","Caspian"], a:0},
-{q:"Pakistan independence day?", o:["14 Aug","15 Aug","23 March","6 Sep","1 May"], a:0},
-{q:"Faisalabad old name?", o:["Lyallpur","Montgomery","Multan","Hyderabad","Sialkot"], a:0},
-{q:"Murree is a?", o:["Hill station","Desert","City","River","Lake"], a:0},
-{q:"Multan famous for?", o:["Saints","Mountains","Sea","Forest","Industry"], a:0}
+{
+    q: "What is the smallest ocean?",
+    o: ["Indian Ocean", "Arctic Ocean", "Atlantic Ocean", "Pacific Ocean", "Southern Ocean"],
+    a: 1
+},
+
+{
+    q: "Which is the largest country in the world by area?",
+    o: ["China", "Canada", "Russia", "USA", "Brazil"],
+    a: 2
+},
+
+{
+    q: "Which is the smallest country in the world?",
+    o: ["Monaco", "Vatican City", "Maldives", "San Marino", "Singapore"],
+    a: 1
+},
+
+{
+    q: "Which imaginary line divides Earth into Northern and Southern Hemispheres?",
+    o: [
+        "Prime Meridian",
+        "Tropic of Cancer",
+        "Equator",
+        "Arctic Circle",
+        "Tropic of Capricorn"
+    ],
+    a: 2
+},
+
+{
+    q: "What is the Prime Meridian?",
+    o: [
+        "0° longitude",
+        "0° latitude",
+        "90° longitude",
+        "180° longitude",
+        "23.5° latitude"
+    ],
+    a: 0
+},
+
+{
+    q: "Which is the largest desert in the world?",
+    o: [
+        "Sahara",
+        "Gobi",
+        "Arabian",
+        "Antarctic Desert",
+        "Thar"
+    ],
+    a: 3
+},
+
+{
+    q: "Which is the largest island in the world?",
+    o: [
+        "Greenland",
+        "Madagascar",
+        "Borneo",
+        "New Guinea",
+        "Iceland"
+    ],
+    a: 0
+},
+
+
+/* ===== MOUNTAIN RANGES ===== */
+
+{
+    q: "Which mountain range contains Mount Everest?",
+    o: [
+        "Alps",
+        "Himalayas",
+        "Andes",
+        "Rockies",
+        "Karakoram"
+    ],
+    a: 1
+},
+
+{
+    q: "In which mountain range is K2 located?",
+    o: [
+        "Himalayas",
+        "Alps",
+        "Karakoram",
+        "Andes",
+        "Rockies"
+    ],
+    a: 2
+},
+
+{
+    q: "Which is the longest continental mountain range in the world?",
+    o: [
+        "Himalayas",
+        "Andes",
+        "Alps",
+        "Rockies",
+        "Karakoram"
+    ],
+    a: 1
+},
+
+{
+    q: "The Alps are mainly located in which continent?",
+    o: [
+        "Asia",
+        "Africa",
+        "Europe",
+        "North America",
+        "Australia"
+    ],
+    a: 2
+},
+
+{
+    q: "The Rocky Mountains are mainly located in which continent?",
+    o: [
+        "Asia",
+        "Europe",
+        "North America",
+        "Africa",
+        "South America"
+    ],
+    a: 2
+},
+
+{
+    q: "The Andes Mountains are located mainly along which continent?",
+    o: [
+        "South America",
+        "North America",
+        "Europe",
+        "Asia",
+        "Africa"
+    ],
+    a: 0
+},
+
+{
+    q: "Which mountain range separates much of Europe from Asia?",
+    o: [
+        "Alps",
+        "Ural Mountains",
+        "Andes",
+        "Rockies",
+        "Himalayas"
+    ],
+    a: 1
+},
+
+{
+    q: "Nanga Parbat is part of which mountain system?",
+    o: [
+        "Himalayas",
+        "Alps",
+        "Andes",
+        "Rockies",
+        "Atlas"
+    ],
+    a: 0
+},
+
+
+/* ===== EARTHQUAKES AND TSUNAMIS ===== */
+
+{
+    q: "What mainly causes an earthquake?",
+    o: [
+        "Strong winds",
+        "Movement of tectonic plates",
+        "Heavy rain",
+        "Ocean waves",
+        "Clouds"
+    ],
+    a: 1
+},
+
+{
+    q: "What is the point on Earth's surface directly above an earthquake's focus called?",
+    o: [
+        "Crater",
+        "Epicenter",
+        "Fault",
+        "Tornado",
+        "Tsunami"
+    ],
+    a: 1
+},
+
+{
+    q: "What is the underground point where an earthquake begins called?",
+    o: [
+        "Epicenter",
+        "Focus",
+        "Crater",
+        "Fault line",
+        "Mantle"
+    ],
+    a: 1
+},
+
+{
+    q: "What instrument measures earthquakes?",
+    o: [
+        "Barometer",
+        "Thermometer",
+        "Seismometer",
+        "Hygrometer",
+        "Compass"
+    ],
+    a: 2
+},
+
+{
+    q: "What can cause a tsunami?",
+    o: [
+        "Underwater earthquake",
+        "Heavy snowfall",
+        "Strong wind only",
+        "Drought",
+        "Heat wave"
+    ],
+    a: 0
+},
+
+{
+    q: "A tsunami is mainly a series of what?",
+    o: [
+        "Earthquakes",
+        "Large ocean waves",
+        "Clouds",
+        "Tornadoes",
+        "Rainstorms"
+    ],
+    a: 1
+},
+
+{
+    q: "Where do many strong earthquakes occur?",
+    o: [
+        "Near tectonic plate boundaries",
+        "In deserts only",
+        "At the poles only",
+        "In forests only",
+        "In rivers"
+    ],
+    a: 0
+},
+
+
+/* ===== UNITED STATES GEOGRAPHY ===== */
+
+{
+    q: "Which is the largest U.S. state by area?",
+    o: [
+        "Texas",
+        "California",
+        "Alaska",
+        "Florida",
+        "Montana"
+    ],
+    a: 2
+},
+
+{
+    q: "Which is the smallest U.S. state by area?",
+    o: [
+        "Delaware",
+        "Rhode Island",
+        "Connecticut",
+        "New Jersey",
+        "Hawaii"
+    ],
+    a: 1
+},
+
+{
+    q: "Which U.S. state is famous for being an island state in the Pacific Ocean?",
+    o: [
+        "Alaska",
+        "Hawaii",
+        "Florida",
+        "California",
+        "Texas"
+    ],
+    a: 1
+},
+
+{
+    q: "Which is the second-largest U.S. state by area?",
+    o: [
+        "Texas",
+        "California",
+        "Montana",
+        "Florida",
+        "Arizona"
+    ],
+    a: 0
+},
+
+{
+    q: "Which U.S. state has the largest population?",
+    o: [
+        "Texas",
+        "New York",
+        "California",
+        "Florida",
+        "Alaska"
+    ],
+    a: 2
+},
+
+
+/* ===== SUNRISE AND TIME ZONES ===== */
+
+{
+    q: "Which country is often among the first places in the world to see the sunrise?",
+    o: [
+        "Japan",
+        "Kiribati",
+        "India",
+        "Pakistan",
+        "Egypt"
+    ],
+    a: 1
+},
+
+{
+    q: "Which country is commonly known as the 'Land of the Rising Sun'?",
+    o: [
+        "China",
+        "Japan",
+        "South Korea",
+        "Thailand",
+        "Philippines"
+    ],
+    a: 1
+},
+
+{
+    q: "Kiribati is located mainly in which ocean?",
+    o: [
+        "Atlantic Ocean",
+        "Indian Ocean",
+        "Pacific Ocean",
+        "Arctic Ocean",
+        "Southern Ocean"
+    ],
+    a: 2
+},
+
+{
+    q: "Which place is one of the earliest inhabited places to enter a new calendar day?",
+    o: [
+        "Kiritimati, Kiribati",
+        "London",
+        "New York",
+        "Cairo",
+        "Karachi"
+    ],
+    a: 0
+},
+
+{
+    q: "Which time zone is among the furthest ahead of UTC?",
+    o: [
+        "UTC−12",
+        "UTC+14",
+        "UTC−5",
+        "UTC+0",
+        "UTC+3"
+    ],
+    a: 1
+},
+
+{
+    q: "If it is 12:00 noon at UTC+0, what time is it at UTC+5?",
+    o: [
+        "5:00 AM",
+        "7:00 AM",
+        "5:00 PM",
+        "12:00 PM",
+        "10:00 PM"
+    ],
+    a: 2
+},
+
+{
+    q: "Pakistan Standard Time is how many hours ahead of UTC?",
+    o: [
+        "3 hours",
+        "4 hours",
+        "5 hours",
+        "6 hours",
+        "7 hours"
+    ],
+    a: 2
+},
+
+{
+    q: "Which country uses Japan Standard Time (UTC+9)?",
+    o: [
+        "Japan",
+        "Pakistan",
+        "India",
+        "Saudi Arabia",
+        "Egypt"
+    ],
+    a: 0
+},
+
+
+/* ===== DEMOGRAPHICS ===== */
+
+{
+    q: "What does demography study?",
+    o: [
+        "Weather",
+        "Population",
+        "Mountains",
+        "Oceans",
+        "Animals"
+    ],
+    a: 1
+},
+
+{
+    q: "What is population density?",
+    o: [
+        "Number of mountains",
+        "People per unit of area",
+        "Number of rivers",
+        "Amount of rainfall",
+        "Size of a country"
+    ],
+    a: 1
+},
+
+{
+    q: "What is a census?",
+    o: [
+        "A population count",
+        "A weather report",
+        "A map",
+        "A type of election",
+        "A school exam"
+    ],
+    a: 0
+},
+
+{
+    q: "Which country has the largest population in the world?",
+    o: [
+        "USA",
+        "India",
+        "China",
+        "Russia",
+        "Brazil"
+    ],
+    a: 1
+},
+
+{
+    q: "What is birth rate?",
+    o: [
+        "Number of deaths",
+        "Number of births in a population",
+        "Number of migrants",
+        "Number of cities",
+        "Number of schools"
+    ],
+    a: 1
+},
+
+{
+    q: "What is migration?",
+    o: [
+        "Movement of people from one place to another",
+        "Growth of plants",
+        "Movement of clouds",
+        "Formation of mountains",
+        "Change in temperature"
+    ],
+    a: 0
+},
+
+{
+    q: "What is life expectancy?",
+    o: [
+        "Expected number of years a person may live",
+        "Number of children in a family",
+        "Population density",
+        "Birth rate",
+        "Death rate"
+    ],
+    a: 0
+},
+
+{
+    q: "Which continent has the largest population?",
+    o: [
+        "Europe",
+        "Africa",
+        "Asia",
+        "Australia",
+        "South America"
+    ],
+    a: 2
+},
+
+
+/* ===== FAMOUS MOSQUES AROUND THE WORLD ===== */
+
+{
+    q: "Where is the Grand Mosque (Masjid al-Haram) located?",
+    o: [
+        "Medina",
+        "Makkah",
+        "Jerusalem",
+        "Cairo",
+        "Istanbul"
+    ],
+    a: 1
+},
+
+{
+    q: "Which mosque surrounds the Kaaba?",
+    o: [
+        "Masjid an-Nabawi",
+        "Masjid al-Aqsa",
+        "Masjid al-Haram",
+        "Blue Mosque",
+        "Faisal Mosque"
+    ],
+    a: 2
+},
+
+{
+    q: "Where is Masjid an-Nabawi located?",
+    o: [
+        "Makkah",
+        "Medina",
+        "Cairo",
+        "Baghdad",
+        "Damascus"
+    ],
+    a: 1
+},
+
+{
+    q: "Where is Masjid al-Aqsa located?",
+    o: [
+        "Jerusalem",
+        "Makkah",
+        "Medina",
+        "Istanbul",
+        "Cairo"
+    ],
+    a: 0
+},
+
+{
+    q: "The Blue Mosque is located in which city?",
+    o: [
+        "Cairo",
+        "Istanbul",
+        "Mecca",
+        "Lahore",
+        "Tehran"
+    ],
+    a: 1
+},
+
+{
+    q: "Faisal Mosque is located in which city?",
+    o: [
+        "Karachi",
+        "Lahore",
+        "Islamabad",
+        "Peshawar",
+        "Multan"
+    ],
+    a: 2
+},
+
+{
+    q: "Badshahi Mosque is located in which city?",
+    o: [
+        "Islamabad",
+        "Lahore",
+        "Karachi",
+        "Multan",
+        "Quetta"
+    ],
+    a: 1
+},
+
+{
+    q: "Hassan II Mosque is located in which country?",
+    o: [
+        "Morocco",
+        "Egypt",
+        "Turkey",
+        "Pakistan",
+        "Saudi Arabia"
+    ],
+    a: 0
+},
+
+{
+    q: "Sheikh Zayed Grand Mosque is located in which city?",
+    o: [
+        "Dubai",
+        "Abu Dhabi",
+        "Doha",
+        "Riyadh",
+        "Kuwait City"
+    ],
+    a: 1
+},
+
+{
+    q: "The Great Mosque of Damascus is located in which country?",
+    o: [
+        "Iraq",
+        "Syria",
+        "Jordan",
+        "Egypt",
+        "Lebanon"
+    ],
+    a: 1
+},
+
+{
+    q: "Which mosque is famous for its large blue-and-white tile decoration in Istanbul?",
+    o: [
+        "Blue Mosque",
+        "Faisal Mosque",
+        "Badshahi Mosque",
+        "Hassan II Mosque",
+        "Grand Mosque"
+    ],
+    a: 0
+},
+
+{
+    q: "Which famous mosque is located in Cordoba, Spain?",
+    o: [
+        "Great Mosque of Córdoba",
+        "Blue Mosque",
+        "Faisal Mosque",
+        "Sultan Mosque",
+        "Hassan II Mosque"
+    ],
+    a: 0
+},
+
+{
+    q: "Which mosque is one of the largest mosques in the world and is located in Abu Dhabi?",
+    o: [
+        "Faisal Mosque",
+        "Sheikh Zayed Grand Mosque",
+        "Blue Mosque",
+        "Badshahi Mosque",
+        "Al-Aqsa Mosque"
+    ],
+    a: 1
+}
+
 ];
 
+
 // ===== VARIABLES =====
+
 let askedIndexes = [];
 let currentQ;
 let questionCount = 0;
@@ -156,17 +807,21 @@ let score = 0;
 let selected = -1;
 let wrongAnswers = [];
 
-// ===== LOAD =====
-function loadQuestion(){
+
+// ===== LOAD QUESTION =====
+
+function loadQuestion() {
 
     selected = -1;
 
     let rand;
+
     do {
         rand = Math.floor(Math.random() * allQuestions.length);
     } while (askedIndexes.includes(rand));
 
     askedIndexes.push(rand);
+
     currentQ = allQuestions[rand];
 
     questionCount++;
@@ -176,86 +831,157 @@ function loadQuestion(){
 
     let html = "";
 
-    for(let i = 0; i < currentQ.o.length; i++){
-        html += '<label><input type="radio" name="opt" onclick="selectOption('+i+')">'+currentQ.o[i]+'</label>';
+    for (let i = 0; i < currentQ.o.length; i++) {
+
+        html +=
+            '<label>' +
+            '<input type="radio" name="opt" onclick="selectOption(' + i + ')">' +
+            currentQ.o[i] +
+            '</label>';
     }
 
     document.getElementById("optionsBox").innerHTML = html;
 
-    if(questionCount == 10){
+    if (questionCount == 20) {
         document.getElementById("nextBtn").innerText = "Submit";
     }
 }
 
-// ===== SELECT =====
-function selectOption(i){
+
+// ===== SELECT OPTION =====
+
+function selectOption(i) {
+
     selected = i;
 }
 
-// ===== NEXT =====
-function nextQuestion(){
 
-    if(selected == -1){
+// ===== NEXT QUESTION =====
+
+function nextQuestion() {
+
+    if (selected == -1) {
+
         alert("Please select an option!");
         return;
     }
 
-    if(selected == currentQ.a){
-        score += 10;
+    if (selected == currentQ.a) {
+
+        score += 5;
+
     } else {
+
         wrongAnswers.push({
+
             question: currentQ.q,
+
             selected: currentQ.o[selected],
+
             correct: currentQ.o[currentQ.a]
+
         });
     }
 
-    if(questionCount < 10){
+    if (questionCount < 20) {
+
         loadQuestion();
+
     } else {
+
         showResult();
     }
 }
 
+
 // ===== RESULT =====
-function showResult(){
+
+function showResult() {
 
     let percent = score;
 
     let msg = percent >= 50 ?
-    "Congratulations! You passed." :
-    "You failed.";
+        "Congratulations! You passed." :
+        "You failed.";
 
     document.getElementById("quizBox").innerHTML =
-        '<h2>Pakistan General Knowledge Test</h2>' +
+
+        '<h2>General Knowledge Test</h2>' +
+
         '<h3>Result</h3>' +
-        '<p><b>Name:</b> ' + firstName + ' ' + lastName + '</p>' +
-        '<p><b>Class:</b> ' + userClass + '</p>' +
-        '<h3>Score: ' + score + '/100</h3>' +
-        '<h3>Percentage: ' + percent + '%</h3>' +
-        '<p>' + msg + '</p>' +
+
+        '<p><b>Name:</b> ' +
+        firstName + ' ' + lastName +
+        '</p>' +
+
+        '<p><b>Class:</b> ' +
+        userClass +
+        '</p>' +
+
+        '<h3>Score: ' +
+        score +
+        '/100</h3>' +
+
+        '<h3>Percentage: ' +
+        percent +
+        '%</h3>' +
+
+        '<p>' +
+        msg +
+        '</p>' +
+
         '<button onclick="showWrong()">Show Wrong Answers</button>' +
+
         '<button onclick="location.reload()">Home</button>';
 }
 
-// ===== WRONG =====
-function showWrong(){
 
-    let html = '<h2>Wrong Answers</h2>' +
-    '<h3>' + firstName + ' ' + lastName + ' (' + userClass + ')</h3>';
+// ===== WRONG ANSWERS =====
 
-    if(wrongAnswers.length==0){
-        html += "<p>All answers correct 🎉</p>";
+function showWrong() {
+
+    let html =
+        '<h2>Wrong Answers</h2>' +
+
+        '<h3>' +
+        firstName + ' ' +
+        lastName +
+        ' (' +
+        userClass +
+        ')</h3>';
+
+    if (wrongAnswers.length == 0) {
+
+        html +=
+            "<p>All answers correct 🎉</p>";
+
     } else {
-        wrongAnswers.forEach((w,i)=>{
+
+        wrongAnswers.forEach((w, i) => {
+
             html +=
-            '<p><b>Q'+(i+1)+':</b> '+w.question+'</p>' +
-            '<p>Your Answer: '+w.selected+'</p>' +
-            '<p>Correct Answer: '+w.correct+'</p><hr>';
+
+                '<p><b>Q' +
+                (i + 1) +
+                ': </b>' +
+                w.question +
+                '</p>' +
+
+                '<p>Your Answer: ' +
+                w.selected +
+                '</p>' +
+
+                '<p>Correct Answer: ' +
+                w.correct +
+                '</p>' +
+
+                '<hr>';
         });
     }
 
-    html += '<button onclick="location.reload()">Home</button>';
+    html +=
+        '<button onclick="location.reload()">Home</button>';
+
     document.getElementById("quizBox").innerHTML = html;
 }
 
