@@ -1,154 +1,289 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>General Knowledge Test</title>
 
 <style>
+
 body {
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     background-color: lightblue;
     text-align: center;
 }
 
 .container {
     width: 65%;
-    margin: auto;
-    background: white;
+    margin: 30px auto;
+    background-color: white;
     padding: 20px;
     border-radius: 10px;
 }
 
+/* =========================
+   GENERAL BUTTON
+========================= */
+
 button {
     padding: 10px 20px;
     font-size: 18px;
-    margin: 10px;
-}
-
-input {
-    padding: 8px;
-    margin: 8px;
-    width: 60%;
-}
-
-/* OPTION STYLE */
-#optionsBox {
-    text-align: left;
-    margin-left: 20%;
-}
-
-label {
-    display: block;
-    margin: 0;
-    padding: 6px 0;
+    margin: 10px 0;
     cursor: pointer;
 }
 
-input[type="radio"] {
-    margin-right: 8px;
+/* =========================
+   START BUTTON
+========================= */
+
+#startForm button {
+    display: block;
+    margin: 15px auto;
 }
+
+/* =========================
+   INPUT FIELDS
+========================= */
+
+input[type="text"] {
+    padding: 8px;
+    margin: 8px;
+    width: 60%;
+    box-sizing: border-box;
+}
+
+/* =========================
+   QUESTION
+========================= */
+
+#questionBox {
+    text-align: left;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#questionBox h3 {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+/* =========================
+   ANSWER OPTIONS
+========================= */
+
+#optionsBox {
+    text-align: left;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#optionsBox label {
+    display: block;
+    text-align: left;
+    padding: 8px 0;
+    margin: 2px 0;
+    cursor: pointer;
+}
+
+/* RADIO BUTTON */
+
+#optionsBox input[type="radio"] {
+    width: auto;
+    margin: 0 10px 0 0;
+    padding: 0;
+}
+
+/* =========================
+   NEXT / SUBMIT BUTTON
+   SLIGHTLY AHEAD FROM LEFT
+========================= */
+
+#nextBtn {
+    display: block;
+    margin-left: 8%;
+    margin-top: 20px;
+}
+
+/* =========================
+   RESULT PAGE
+========================= */
+
+#resultBox {
+    text-align: center;
+}
+
+#resultBox h2,
+#resultBox h3,
+#resultBox p {
+    text-align: center;
+}
+
+#resultBox button {
+    display: block;
+    margin: 12px auto;
+}
+
+/* =========================
+   WRONG ANSWERS PAGE
+========================= */
+
+#wrongBox {
+    text-align: center;
+}
+
+#wrongBox h2,
+#wrongBox h3,
+#wrongBox p {
+    text-align: center;
+}
+
+#wrongBox hr {
+    width: 80%;
+}
+
+#wrongBox button {
+    display: block;
+    margin: 12px auto;
+}
+
+/* =========================
+   MOBILE SCREEN
+========================= */
+
+@media screen and (max-width: 700px) {
+
+    .container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    input[type="text"] {
+        width: 80%;
+    }
+
+    #questionBox,
+    #optionsBox {
+        margin-left: 3%;
+        margin-right: 3%;
+    }
+
+    #nextBtn {
+        margin-left: 6%;
+    }
+
+}
+
 </style>
+
 </head>
 
 <body>
 
+
 <div class="container" id="quizBox">
 
-<div id="startForm">
-    <h2>General Knowledge Test</h2>
+    <!-- =========================
+         START PAGE
+    ========================== -->
 
-    <input type="text" id="fname" placeholder="First Name"><br>
+    <div id="startForm">
 
-    <input type="text" id="lname" placeholder="Last Name"><br>
+        <h2>General Knowledge Test</h2>
 
-    <input type="text" id="userClass" placeholder="Class"><br>
+        <input
+            type="text"
+            id="fname"
+            placeholder="First Name"
+        >
 
-    <button onclick="startTest()">Start</button>
+        <br>
+
+        <input
+            type="text"
+            id="lname"
+            placeholder="Last Name"
+        >
+
+        <br>
+
+        <input
+            type="text"
+            id="userClass"
+            placeholder="Class"
+        >
+
+        <br>
+
+        <button onclick="startTest()">Start</button>
+
+    </div>
+
 </div>
 
-</div>
 
 <script>
 
-// ===== USER INFO =====
+/* =========================================
+   USER INFORMATION
+========================================= */
 
 let firstName = "";
 let lastName = "";
 let userClass = "";
 
 
-// ===== START =====
-
-function startTest() {
-
-    firstName = document.getElementById("fname").value;
-    lastName = document.getElementById("lname").value;
-    userClass = document.getElementById("userClass").value;
-
-    if (firstName == "" || lastName == "" || userClass == "") {
-        alert("Please fill all fields!");
-        return;
-    }
-
-    document.getElementById("quizBox").innerHTML =
-        '<h2>General Knowledge Test</h2>' +
-        '<div id="questionBox"></div>' +
-        '<div id="optionsBox"></div>' +
-        '<button onclick="nextQuestion()" id="nextBtn">Next</button>';
-
-    loadQuestion();
-}
-
-
-// ===== QUESTIONS =====
+/* =========================================
+   QUESTION BANK
+========================================= */
 
 const allQuestions = [
 
-/* ===== GEOGRAPHY ===== */
+/* =========================
+   GEOGRAPHY
+========================= */
 
 {
-    q: "What is the largest continent in the world?",
-    o: ["Africa", "Asia", "Europe", "Australia", "South America"],
+    q: "Which is the largest continent in the world?",
+    o: ["Africa", "Asia", "Europe", "North America"],
     a: 1
 },
 
 {
-    q: "What is the smallest continent?",
-    o: ["Europe", "Australia", "Africa", "Antarctica", "South America"],
+    q: "Which is the smallest continent in the world?",
+    o: ["Europe", "Australia", "Antarctica", "South America"],
     a: 1
 },
 
 {
-    q: "What is the largest ocean in the world?",
-    o: ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Arctic Ocean", "Southern Ocean"],
+    q: "Which is the largest ocean in the world?",
+    o: ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Arctic Ocean"],
     a: 2
 },
 
 {
-    q: "What is the smallest ocean?",
-    o: ["Indian Ocean", "Arctic Ocean", "Atlantic Ocean", "Pacific Ocean", "Southern Ocean"],
+    q: "Which is the smallest ocean in the world?",
+    o: ["Indian Ocean", "Arctic Ocean", "Atlantic Ocean", "Southern Ocean"],
     a: 1
 },
 
 {
     q: "Which is the largest country in the world by area?",
-    o: ["China", "Canada", "Russia", "USA", "Brazil"],
+    o: ["Canada", "China", "Russia", "United States"],
     a: 2
 },
 
 {
     q: "Which is the smallest country in the world?",
-    o: ["Monaco", "Vatican City", "Maldives", "San Marino", "Singapore"],
+    o: ["Monaco", "Vatican City", "Maldives", "San Marino"],
     a: 1
 },
 
 {
-    q: "Which imaginary line divides Earth into Northern and Southern Hemispheres?",
+    q: "Which line divides the Earth into the Northern and Southern Hemispheres?",
     o: [
         "Prime Meridian",
         "Tropic of Cancer",
         "Equator",
-        "Arctic Circle",
-        "Tropic of Capricorn"
+        "International Date Line"
     ],
     a: 2
 },
@@ -156,23 +291,21 @@ const allQuestions = [
 {
     q: "What is the Prime Meridian?",
     o: [
-        "0° longitude",
         "0° latitude",
-        "90° longitude",
-        "180° longitude",
-        "23.5° latitude"
+        "0° longitude",
+        "90° latitude",
+        "180° longitude"
     ],
-    a: 0
+    a: 1
 },
 
 {
     q: "Which is the largest desert in the world?",
     o: [
-        "Sahara",
-        "Gobi",
-        "Arabian",
-        "Antarctic Desert",
-        "Thar"
+        "Sahara Desert",
+        "Gobi Desert",
+        "Arabian Desert",
+        "Antarctic Desert"
     ],
     a: 3
 },
@@ -181,387 +314,256 @@ const allQuestions = [
     q: "Which is the largest island in the world?",
     o: [
         "Greenland",
-        "Madagascar",
-        "Borneo",
         "New Guinea",
-        "Iceland"
+        "Borneo",
+        "Madagascar"
     ],
     a: 0
 },
 
 
-/* ===== MOUNTAIN RANGES ===== */
+/* =========================
+   MOUNTAIN RANGES
+========================= */
 
 {
-    q: "Which mountain range contains Mount Everest?",
-    o: [
-        "Alps",
-        "Himalayas",
-        "Andes",
-        "Rockies",
-        "Karakoram"
-    ],
+    q: "Mount Everest is located in which mountain range?",
+    o: ["Karakoram", "Himalayas", "Andes", "Alps"],
     a: 1
 },
 
 {
-    q: "In which mountain range is K2 located?",
-    o: [
-        "Himalayas",
-        "Alps",
-        "Karakoram",
-        "Andes",
-        "Rockies"
-    ],
+    q: "K2 is located in which mountain range?",
+    o: ["Himalayas", "Andes", "Karakoram", "Rockies"],
     a: 2
 },
 
 {
     q: "Which is the longest continental mountain range in the world?",
-    o: [
-        "Himalayas",
-        "Andes",
-        "Alps",
-        "Rockies",
-        "Karakoram"
-    ],
+    o: ["Himalayas", "Andes", "Rockies", "Alps"],
     a: 1
 },
 
 {
     q: "The Alps are mainly located in which continent?",
-    o: [
-        "Asia",
-        "Africa",
-        "Europe",
-        "North America",
-        "Australia"
-    ],
-    a: 2
+    o: ["Asia", "Europe", "Africa", "North America"],
+    a: 1
 },
 
 {
     q: "The Rocky Mountains are mainly located in which continent?",
-    o: [
-        "Asia",
-        "Europe",
-        "North America",
-        "Africa",
-        "South America"
-    ],
+    o: ["Europe", "Asia", "North America", "South America"],
     a: 2
 },
 
 {
-    q: "The Andes Mountains are located mainly along which continent?",
-    o: [
-        "South America",
-        "North America",
-        "Europe",
-        "Asia",
-        "Africa"
-    ],
-    a: 0
+    q: "The Andes Mountains are located in which continent?",
+    o: ["Africa", "Europe", "South America", "Asia"],
+    a: 2
 },
 
 {
-    q: "Which mountain range separates much of Europe from Asia?",
-    o: [
-        "Alps",
-        "Ural Mountains",
-        "Andes",
-        "Rockies",
-        "Himalayas"
-    ],
+    q: "Which mountain range is commonly considered part of the boundary between Europe and Asia?",
+    o: ["Alps", "Ural Mountains", "Andes", "Rockies"],
     a: 1
 },
 
 {
-    q: "Nanga Parbat is part of which mountain system?",
-    o: [
-        "Himalayas",
-        "Alps",
-        "Andes",
-        "Rockies",
-        "Atlas"
-    ],
+    q: "Nanga Parbat is located in which mountain range?",
+    o: ["Himalayas", "Karakoram", "Alps", "Andes"],
     a: 0
 },
 
 
-/* ===== EARTHQUAKES AND TSUNAMIS ===== */
+/* =========================
+   EARTHQUAKES AND TSUNAMIS
+========================= */
 
 {
-    q: "What mainly causes an earthquake?",
+    q: "What is a major cause of earthquakes?",
     o: [
-        "Strong winds",
         "Movement of tectonic plates",
-        "Heavy rain",
-        "Ocean waves",
-        "Clouds"
+        "Heavy rainfall",
+        "Strong winds",
+        "Ocean tides"
     ],
-    a: 1
+    a: 0
 },
 
 {
-    q: "What is the point on Earth's surface directly above an earthquake's focus called?",
-    o: [
-        "Crater",
-        "Epicenter",
-        "Fault",
-        "Tornado",
-        "Tsunami"
-    ],
-    a: 1
+    q: "What is the point on the Earth's surface directly above the focus of an earthquake called?",
+    o: ["Epicenter", "Fault", "Crater", "Tremor"],
+    a: 0
 },
 
 {
     q: "What is the underground point where an earthquake begins called?",
-    o: [
-        "Epicenter",
-        "Focus",
-        "Crater",
-        "Fault line",
-        "Mantle"
-    ],
+    o: ["Epicenter", "Focus", "Fault line", "Crust"],
     a: 1
 },
 
 {
-    q: "What instrument measures earthquakes?",
+    q: "Which instrument is used to detect and measure earthquakes?",
     o: [
         "Barometer",
         "Thermometer",
         "Seismometer",
-        "Hygrometer",
-        "Compass"
+        "Hygrometer"
     ],
     a: 2
 },
 
 {
-    q: "What can cause a tsunami?",
+    q: "Which event can cause a tsunami?",
     o: [
         "Underwater earthquake",
-        "Heavy snowfall",
-        "Strong wind only",
-        "Drought",
-        "Heat wave"
+        "Light rainfall",
+        "Strong sunlight",
+        "Snowfall"
     ],
     a: 0
 },
 
 {
-    q: "A tsunami is mainly a series of what?",
+    q: "What is a tsunami?",
     o: [
-        "Earthquakes",
-        "Large ocean waves",
-        "Clouds",
-        "Tornadoes",
-        "Rainstorms"
+        "A series of large ocean waves",
+        "A type of hurricane",
+        "A volcanic cloud",
+        "A desert storm"
     ],
-    a: 1
+    a: 0
 },
 
 {
     q: "Where do many strong earthquakes occur?",
     o: [
         "Near tectonic plate boundaries",
-        "In deserts only",
-        "At the poles only",
-        "In forests only",
-        "In rivers"
+        "Only in deserts",
+        "Only near rivers",
+        "Only near the poles"
     ],
     a: 0
 },
 
 
-/* ===== UNITED STATES GEOGRAPHY ===== */
+/* =========================
+   UNITED STATES GEOGRAPHY
+========================= */
 
 {
     q: "Which is the largest U.S. state by area?",
-    o: [
-        "Texas",
-        "California",
-        "Alaska",
-        "Florida",
-        "Montana"
-    ],
+    o: ["Texas", "California", "Alaska", "Florida"],
     a: 2
 },
 
 {
     q: "Which is the smallest U.S. state by area?",
-    o: [
-        "Delaware",
-        "Rhode Island",
-        "Connecticut",
-        "New Jersey",
-        "Hawaii"
-    ],
+    o: ["Delaware", "Rhode Island", "Connecticut", "New Jersey"],
     a: 1
 },
 
 {
-    q: "Which U.S. state is famous for being an island state in the Pacific Ocean?",
-    o: [
-        "Alaska",
-        "Hawaii",
-        "Florida",
-        "California",
-        "Texas"
-    ],
-    a: 1
-},
-
-{
-    q: "Which is the second-largest U.S. state by area?",
-    o: [
-        "Texas",
-        "California",
-        "Montana",
-        "Florida",
-        "Arizona"
-    ],
+    q: "Which U.S. state is located in the Pacific Ocean?",
+    o: ["Hawaii", "Florida", "Alaska", "Maine"],
     a: 0
 },
 
 {
+    q: "Which is the second-largest U.S. state by area?",
+    o: ["California", "Texas", "Alaska", "Montana"],
+    a: 1
+},
+
+{
     q: "Which U.S. state has the largest population?",
-    o: [
-        "Texas",
-        "New York",
-        "California",
-        "Florida",
-        "Alaska"
-    ],
+    o: ["Texas", "New York", "California", "Florida"],
     a: 2
 },
 
 
-/* ===== SUNRISE AND TIME ZONES ===== */
+/* =========================
+   SUNRISE AND TIME
+========================= */
 
 {
-    q: "Which country is often among the first places in the world to see the sunrise?",
-    o: [
-        "Japan",
-        "Kiribati",
-        "India",
-        "Pakistan",
-        "Egypt"
-    ],
+    q: "Which country is often among the first places in the world to see a new sunrise?",
+    o: ["Pakistan", "Kiribati", "Brazil", "Canada"],
     a: 1
 },
 
 {
-    q: "Which country is commonly known as the 'Land of the Rising Sun'?",
-    o: [
-        "China",
-        "Japan",
-        "South Korea",
-        "Thailand",
-        "Philippines"
-    ],
+    q: "Which country is known as the 'Land of the Rising Sun'?",
+    o: ["China", "Japan", "South Korea", "Thailand"],
     a: 1
 },
 
 {
-    q: "Kiribati is located mainly in which ocean?",
+    q: "Kiribati is mainly located in which ocean?",
     o: [
         "Atlantic Ocean",
         "Indian Ocean",
         "Pacific Ocean",
-        "Arctic Ocean",
-        "Southern Ocean"
+        "Arctic Ocean"
     ],
     a: 2
 },
 
 {
-    q: "Which place is one of the earliest inhabited places to enter a new calendar day?",
+    q: "Kiritimati is one of the inhabited places to enter a new calendar day earliest?",
     o: [
-        "Kiritimati, Kiribati",
-        "London",
-        "New York",
-        "Cairo",
-        "Karachi"
+        "A calendar day",
+        "A lunar month",
+        "A season",
+        "A year only"
     ],
     a: 0
 },
 
 {
     q: "Which time zone is among the furthest ahead of UTC?",
-    o: [
-        "UTC−12",
-        "UTC+14",
-        "UTC−5",
-        "UTC+0",
-        "UTC+3"
-    ],
-    a: 1
+    o: ["UTC−12", "UTC+0", "UTC+5", "UTC+14"],
+    a: 3
 },
 
 {
-    q: "If it is 12:00 noon at UTC+0, what time is it at UTC+5?",
-    o: [
-        "5:00 AM",
-        "7:00 AM",
-        "5:00 PM",
-        "12:00 PM",
-        "10:00 PM"
-    ],
+    q: "If it is 12 noon at UTC+0, what time is it in UTC+5?",
+    o: ["3 PM", "4 PM", "5 PM", "6 PM"],
     a: 2
 },
 
 {
-    q: "Pakistan Standard Time is how many hours ahead of UTC?",
-    o: [
-        "3 hours",
-        "4 hours",
-        "5 hours",
-        "6 hours",
-        "7 hours"
-    ],
+    q: "What is Pakistan Standard Time?",
+    o: ["UTC+3", "UTC+4", "UTC+5", "UTC+6"],
     a: 2
 },
 
 {
-    q: "Which country uses Japan Standard Time (UTC+9)?",
-    o: [
-        "Japan",
-        "Pakistan",
-        "India",
-        "Saudi Arabia",
-        "Egypt"
-    ],
+    q: "Japan Standard Time is UTC+9. Which country uses it?",
+    o: ["Japan", "Pakistan", "India", "China"],
     a: 0
 },
 
 
-/* ===== DEMOGRAPHICS ===== */
+/* =========================
+   DEMOGRAPHICS
+========================= */
 
 {
     q: "What does demography study?",
-    o: [
-        "Weather",
-        "Population",
-        "Mountains",
-        "Oceans",
-        "Animals"
-    ],
+    o: ["Weather", "Population", "Rocks", "Oceans"],
     a: 1
 },
 
 {
-    q: "What is population density?",
+    q: "What does population density mean?",
     o: [
-        "Number of mountains",
-        "People per unit of area",
-        "Number of rivers",
-        "Amount of rainfall",
-        "Size of a country"
+        "Number of people per unit area",
+        "Number of cities",
+        "Number of houses",
+        "Number of countries"
     ],
-    a: 1
+    a: 0
 },
 
 {
@@ -569,35 +571,27 @@ const allQuestions = [
     o: [
         "A population count",
         "A weather report",
-        "A map",
-        "A type of election",
-        "A school exam"
+        "A geological survey",
+        "A political election"
     ],
     a: 0
 },
 
 {
-    q: "Which country has the largest population in the world?",
-    o: [
-        "USA",
-        "India",
-        "China",
-        "Russia",
-        "Brazil"
-    ],
+    q: "Which country currently has the largest population?",
+    o: ["China", "India", "United States", "Indonesia"],
     a: 1
 },
 
 {
-    q: "What is birth rate?",
+    q: "What does birth rate refer to?",
     o: [
-        "Number of deaths",
         "Number of births in a population",
+        "Number of deaths",
         "Number of migrants",
-        "Number of cities",
-        "Number of schools"
+        "Number of elderly people"
     ],
-    a: 1
+    a: 0
 },
 
 {
@@ -606,48 +600,36 @@ const allQuestions = [
         "Movement of people from one place to another",
         "Growth of plants",
         "Movement of clouds",
-        "Formation of mountains",
-        "Change in temperature"
+        "Movement of tectonic plates"
     ],
     a: 0
 },
 
 {
-    q: "What is life expectancy?",
+    q: "What does life expectancy mean?",
     o: [
-        "Expected number of years a person may live",
-        "Number of children in a family",
-        "Population density",
-        "Birth rate",
-        "Death rate"
+        "Expected years a person may live",
+        "Average age of a country",
+        "Number of births",
+        "Number of children"
     ],
     a: 0
 },
 
 {
     q: "Which continent has the largest population?",
-    o: [
-        "Europe",
-        "Africa",
-        "Asia",
-        "Australia",
-        "South America"
-    ],
-    a: 2
+    o: ["Africa", "Asia", "Europe", "North America"],
+    a: 1
 },
 
 
-/* ===== FAMOUS MOSQUES AROUND THE WORLD ===== */
+/* =========================
+   FAMOUS MOSQUES
+========================= */
 
 {
-    q: "Where is the Grand Mosque (Masjid al-Haram) located?",
-    o: [
-        "Medina",
-        "Makkah",
-        "Jerusalem",
-        "Cairo",
-        "Istanbul"
-    ],
+    q: "Where is Masjid al-Haram located?",
+    o: ["Medina", "Makkah", "Jerusalem", "Cairo"],
     a: 1
 },
 
@@ -657,7 +639,6 @@ const allQuestions = [
         "Masjid an-Nabawi",
         "Masjid al-Aqsa",
         "Masjid al-Haram",
-        "Blue Mosque",
         "Faisal Mosque"
     ],
     a: 2
@@ -665,140 +646,198 @@ const allQuestions = [
 
 {
     q: "Where is Masjid an-Nabawi located?",
-    o: [
-        "Makkah",
-        "Medina",
-        "Cairo",
-        "Baghdad",
-        "Damascus"
-    ],
+    o: ["Makkah", "Medina", "Riyadh", "Jeddah"],
     a: 1
 },
 
 {
     q: "Where is Masjid al-Aqsa located?",
-    o: [
-        "Jerusalem",
-        "Makkah",
-        "Medina",
-        "Istanbul",
-        "Cairo"
-    ],
+    o: ["Jerusalem", "Makkah", "Medina", "Amman"],
     a: 0
 },
 
 {
-    q: "The Blue Mosque is located in which city?",
-    o: [
-        "Cairo",
-        "Istanbul",
-        "Mecca",
-        "Lahore",
-        "Tehran"
-    ],
-    a: 1
+    q: "Where is the Blue Mosque located?",
+    o: ["Istanbul", "Cairo", "Damascus", "Baghdad"],
+    a: 0
 },
 
 {
-    q: "Faisal Mosque is located in which city?",
-    o: [
-        "Karachi",
-        "Lahore",
-        "Islamabad",
-        "Peshawar",
-        "Multan"
-    ],
+    q: "Where is Faisal Mosque located?",
+    o: ["Lahore", "Karachi", "Islamabad", "Peshawar"],
     a: 2
 },
 
 {
-    q: "Badshahi Mosque is located in which city?",
-    o: [
-        "Islamabad",
-        "Lahore",
-        "Karachi",
-        "Multan",
-        "Quetta"
-    ],
+    q: "Where is Badshahi Mosque located?",
+    o: ["Islamabad", "Lahore", "Multan", "Karachi"],
     a: 1
 },
 
 {
-    q: "Hassan II Mosque is located in which country?",
-    o: [
-        "Morocco",
-        "Egypt",
-        "Turkey",
-        "Pakistan",
-        "Saudi Arabia"
-    ],
+    q: "The Hassan II Mosque is located in which country?",
+    o: ["Morocco", "Egypt", "Turkey", "Saudi Arabia"],
     a: 0
 },
 
 {
-    q: "Sheikh Zayed Grand Mosque is located in which city?",
-    o: [
-        "Dubai",
-        "Abu Dhabi",
-        "Doha",
-        "Riyadh",
-        "Kuwait City"
-    ],
+    q: "The Sheikh Zayed Grand Mosque is located in which city?",
+    o: ["Dubai", "Abu Dhabi", "Doha", "Riyadh"],
     a: 1
 },
 
 {
     q: "The Great Mosque of Damascus is located in which country?",
-    o: [
-        "Iraq",
-        "Syria",
-        "Jordan",
-        "Egypt",
-        "Lebanon"
-    ],
+    o: ["Iraq", "Syria", "Jordan", "Lebanon"],
     a: 1
 },
 
 {
-    q: "Which mosque is famous for its large blue-and-white tile decoration in Istanbul?",
+    q: "Which famous mosque in Istanbul is known for its blue-and-white tiles?",
     o: [
         "Blue Mosque",
         "Faisal Mosque",
         "Badshahi Mosque",
-        "Hassan II Mosque",
-        "Grand Mosque"
-    ],
-    a: 0
-},
-
-{
-    q: "Which famous mosque is located in Cordoba, Spain?",
-    o: [
-        "Great Mosque of Córdoba",
-        "Blue Mosque",
-        "Faisal Mosque",
-        "Sultan Mosque",
         "Hassan II Mosque"
     ],
     a: 0
 },
 
 {
-    q: "Which mosque is one of the largest mosques in the world and is located in Abu Dhabi?",
+    q: "Which famous mosque is located in Córdoba, Spain?",
     o: [
-        "Faisal Mosque",
-        "Sheikh Zayed Grand Mosque",
+        "Great Mosque of Córdoba",
         "Blue Mosque",
-        "Badshahi Mosque",
-        "Al-Aqsa Mosque"
+        "Faisal Mosque",
+        "Sheikh Zayed Grand Mosque"
     ],
+    a: 0
+},
+
+{
+    q: "Which famous mosque is one of the largest mosques in Abu Dhabi?",
+    o: [
+        "Sheikh Zayed Grand Mosque",
+        "Masjid al-Aqsa",
+        "Blue Mosque",
+        "Badshahi Mosque"
+    ],
+    a: 0
+},
+
+
+/* =========================
+   SOLAR SYSTEM
+========================= */
+
+{
+    q: "How many planets are there in the Solar System?",
+    o: ["7", "8", "9", "10"],
+    a: 1
+},
+
+{
+    q: "Which planet is closest to the Sun?",
+    o: ["Venus", "Earth", "Mercury", "Mars"],
+    a: 2
+},
+
+{
+    q: "Which planet is second from the Sun?",
+    o: ["Earth", "Venus", "Mars", "Mercury"],
+    a: 1
+},
+
+{
+    q: "Which planet is third from the Sun?",
+    o: ["Venus", "Earth", "Mars", "Jupiter"],
+    a: 1
+},
+
+{
+    q: "Which planet is fourth from the Sun?",
+    o: ["Earth", "Mars", "Venus", "Jupiter"],
+    a: 1
+},
+
+{
+    q: "Which is the largest planet in the Solar System?",
+    o: ["Saturn", "Jupiter", "Neptune", "Earth"],
+    a: 1
+},
+
+{
+    q: "Which planet is farthest from the Sun?",
+    o: ["Uranus", "Saturn", "Neptune", "Jupiter"],
+    a: 2
+},
+
+{
+    q: "Which planet is known as the Red Planet?",
+    o: ["Venus", "Mars", "Jupiter", "Mercury"],
+    a: 1
+},
+
+{
+    q: "Which planet has prominent rings?",
+    o: ["Mars", "Earth", "Saturn", "Venus"],
+    a: 2
+},
+
+{
+    q: "Which planet is approximately 150 million km from the Sun?",
+    o: ["Earth", "Mars", "Venus", "Jupiter"],
+    a: 0
+},
+
+{
+    q: "Which planet is approximately 58 million km from the Sun?",
+    o: ["Venus", "Mercury", "Earth", "Mars"],
+    a: 1
+},
+
+{
+    q: "Which planet is approximately 108 million km from the Sun?",
+    o: ["Earth", "Venus", "Mars", "Mercury"],
+    a: 1
+},
+
+{
+    q: "Which planet is approximately 228 million km from the Sun?",
+    o: ["Mars", "Earth", "Venus", "Jupiter"],
+    a: 0
+},
+
+{
+    q: "Which planet is approximately 778 million km from the Sun?",
+    o: ["Saturn", "Jupiter", "Uranus", "Neptune"],
+    a: 1
+},
+
+{
+    q: "Which planet is approximately 1.43 billion km from the Sun?",
+    o: ["Jupiter", "Saturn", "Uranus", "Neptune"],
+    a: 1
+},
+
+{
+    q: "Which planet is approximately 2.87 billion km from the Sun?",
+    o: ["Saturn", "Uranus", "Neptune", "Jupiter"],
+    a: 1
+},
+
+{
+    q: "Which planet is approximately 4.5 billion km from the Sun?",
+    o: ["Uranus", "Neptune", "Saturn", "Jupiter"],
     a: 1
 }
 
 ];
 
 
-// ===== VARIABLES =====
+/* =========================================
+   TEST VARIABLES
+========================================= */
 
 let askedIndexes = [];
 let currentQ;
@@ -808,7 +847,54 @@ let selected = -1;
 let wrongAnswers = [];
 
 
-// ===== LOAD QUESTION =====
+/* =========================================
+   START TEST
+========================================= */
+
+function startTest() {
+
+    firstName =
+        document.getElementById("fname").value.trim();
+
+    lastName =
+        document.getElementById("lname").value.trim();
+
+    userClass =
+        document.getElementById("userClass").value.trim();
+
+
+    if (
+        firstName === "" ||
+        lastName === "" ||
+        userClass === ""
+    ) {
+
+        alert("Please fill all fields!");
+
+        return;
+    }
+
+
+    document.getElementById("quizBox").innerHTML =
+
+        '<h2>General Knowledge Test</h2>' +
+
+        '<div id="questionBox"></div>' +
+
+        '<div id="optionsBox"></div>' +
+
+        '<button onclick="nextQuestion()" id="nextBtn">' +
+        'Next' +
+        '</button>';
+
+
+    loadQuestion();
+}
+
+
+/* =========================================
+   LOAD QUESTION
+========================================= */
 
 function loadQuestion() {
 
@@ -816,39 +902,79 @@ function loadQuestion() {
 
     let rand;
 
+
     do {
-        rand = Math.floor(Math.random() * allQuestions.length);
-    } while (askedIndexes.includes(rand));
+
+        rand =
+            Math.floor(
+                Math.random() *
+                allQuestions.length
+            );
+
+    } while (
+        askedIndexes.includes(rand)
+    );
+
 
     askedIndexes.push(rand);
 
-    currentQ = allQuestions[rand];
+    currentQ =
+        allQuestions[rand];
 
     questionCount++;
 
+
     document.getElementById("questionBox").innerHTML =
-        "<h3>Q" + questionCount + ". " + currentQ.q + "</h3>";
+
+        "<h3>Q" +
+        questionCount +
+        ". " +
+        currentQ.q +
+        "</h3>";
+
 
     let html = "";
 
-    for (let i = 0; i < currentQ.o.length; i++) {
+
+    for (
+        let i = 0;
+        i < currentQ.o.length;
+        i++
+    ) {
 
         html +=
+
             '<label>' +
-            '<input type="radio" name="opt" onclick="selectOption(' + i + ')">' +
+
+            '<input type="radio" ' +
+
+            'name="opt" ' +
+
+            'onclick="selectOption(' +
+            i +
+            ')">' +
+
             currentQ.o[i] +
+
             '</label>';
     }
 
-    document.getElementById("optionsBox").innerHTML = html;
 
-    if (questionCount == 20) {
-        document.getElementById("nextBtn").innerText = "Submit";
+    document.getElementById("optionsBox").innerHTML =
+        html;
+
+
+    if (questionCount === 20) {
+
+        document.getElementById("nextBtn").innerText =
+            "Submit";
     }
 }
 
 
-// ===== SELECT OPTION =====
+/* =========================================
+   SELECT OPTION
+========================================= */
 
 function selectOption(i) {
 
@@ -856,17 +982,21 @@ function selectOption(i) {
 }
 
 
-// ===== NEXT QUESTION =====
+/* =========================================
+   NEXT / SUBMIT
+========================================= */
 
 function nextQuestion() {
 
-    if (selected == -1) {
+    if (selected === -1) {
 
         alert("Please select an option!");
+
         return;
     }
 
-    if (selected == currentQ.a) {
+
+    if (selected === currentQ.a) {
 
         score += 5;
 
@@ -876,12 +1006,15 @@ function nextQuestion() {
 
             question: currentQ.q,
 
-            selected: currentQ.o[selected],
+            selected:
+                currentQ.o[selected],
 
-            correct: currentQ.o[currentQ.a]
+            correct:
+                currentQ.o[currentQ.a]
 
         });
     }
+
 
     if (questionCount < 20) {
 
@@ -890,28 +1023,38 @@ function nextQuestion() {
     } else {
 
         showResult();
+
     }
 }
 
 
-// ===== RESULT =====
+/* =========================================
+   RESULT PAGE
+========================================= */
 
 function showResult() {
 
     let percent = score;
 
-    let msg = percent >= 50 ?
-        "Congratulations! You passed." :
-        "You failed.";
+
+    let msg =
+        percent >= 50
+        ? "Congratulations! You passed."
+        : "You failed.";
+
 
     document.getElementById("quizBox").innerHTML =
+
+        '<div id="resultBox">' +
 
         '<h2>General Knowledge Test</h2>' +
 
         '<h3>Result</h3>' +
 
         '<p><b>Name:</b> ' +
-        firstName + ' ' + lastName +
+        firstName +
+        ' ' +
+        lastName +
         '</p>' +
 
         '<p><b>Class:</b> ' +
@@ -930,59 +1073,90 @@ function showResult() {
         msg +
         '</p>' +
 
-        '<button onclick="showWrong()">Show Wrong Answers</button>' +
+        '<button onclick="showWrong()">' +
+        'Show Wrong Answers' +
+        '</button>' +
 
-        '<button onclick="location.reload()">Home</button>';
+        '<button onclick="location.reload()">' +
+        'Home' +
+        '</button>' +
+
+        '</div>';
 }
 
 
-// ===== WRONG ANSWERS =====
+/* =========================================
+   WRONG ANSWERS PAGE
+========================================= */
 
 function showWrong() {
 
     let html =
+
+        '<div id="wrongBox">' +
+
         '<h2>Wrong Answers</h2>' +
 
         '<h3>' +
-        firstName + ' ' +
+
+        firstName +
+        ' ' +
         lastName +
+
         ' (' +
+
         userClass +
+
         ')</h3>';
 
-    if (wrongAnswers.length == 0) {
+
+    if (wrongAnswers.length === 0) {
 
         html +=
             "<p>All answers correct 🎉</p>";
 
     } else {
 
-        wrongAnswers.forEach((w, i) => {
+        wrongAnswers.forEach(
+            function(w, i) {
 
-            html +=
+                html +=
 
-                '<p><b>Q' +
-                (i + 1) +
-                ': </b>' +
-                w.question +
-                '</p>' +
+                    '<p><b>Q' +
+                    (i + 1) +
+                    ': </b>' +
+                    w.question +
+                    '</p>' +
 
-                '<p>Your Answer: ' +
-                w.selected +
-                '</p>' +
+                    '<p><b>Your Answer:</b> ' +
+                    w.selected +
+                    '</p>' +
 
-                '<p>Correct Answer: ' +
-                w.correct +
-                '</p>' +
+                    '<p><b>Correct Answer:</b> ' +
+                    w.correct +
+                    '</p>' +
 
-                '<hr>';
-        });
+                    '<hr>';
+            }
+        );
     }
 
-    html +=
-        '<button onclick="location.reload()">Home</button>';
 
-    document.getElementById("quizBox").innerHTML = html;
+    html +=
+
+        '<button onclick="showResult()">' +
+        'Back' +
+        '</button>' +
+
+        '<button onclick="location.reload()">' +
+        'Home' +
+        '</button>' +
+
+        '</div>';
+
+
+    document.getElementById("quizBox").innerHTML =
+        html;
 }
 
 </script>
